@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Controle Completo do Artista</title>
+
+<style>
+body{
+  font-family:Arial,sans-serif;
+  background:#f2f2f2;
+  padding:15px;
+  color:#222;
+}
+.container{
+  max-width:1500px;
+  margin:auto;
+  background:white;
+  padding:20px;
+  border-radius:12px;
+}
+h1,h2{text-align:center;}
+.info{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:10px;
+}
+input,select,textarea{
+  width:100%;
+  padding:7px;
+  box-sizing:border-box;
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:15px;
+  font-size:14px;
+}
+th{
+  background:#111;
+  color:white;
+  padding:8px;
+}
+td{
+  border:1px solid #ccc;
+  padding:5px;
+}
+button{
+  padding:10px 14px;
+  border:none;
+  border-radius:6px;
+  margin:6px;
+  cursor:pointer;
+  font-weight:bold;
+}
+.add{background:#198754;color:white;}
+.pdf{background:#dc3545;color:white;}
+.save{background:#0d6efd;color:white;}
+.clear{background:#555;color:white;}
+.total{
+  font-size:24px;
+  font-weight:bold;
+  text-align:right;
+  color:green;
+  margin-top:20px;
+}
+.resumo{
+  background:#f7f7f7;
+  padding:15px;
+  border-radius:10px;
+  margin-top:20px;
+}
+.estoqueBaixo{
+  background:#ff4444 !important;
+  color:white;
+  font-weight:bold;
+}
+@media print{
+  button,input[type=file]{display:none;}
+  body{background:white;}
+  .container{box-shadow:none;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>💄 Controle Completo de Maquiagem, Cabelo, Peruca, Acessórios e Nota Fiscal</h1>
+
+<div class="info">
+  <div>
+    <label>Artista</label>
+    <input id="artista" type="text" placeholder="Ex: Edy Michael Cover">
+  </div>
+
+  <div>
+    <label>Tipo de Apresentação</label>
+    <select id="tipoShow">
+      <option>Show Completo</option>
+      <option>Pocket Show</option>
+      <option>Ensaio</option>
+      <option>Evento Especial</option>
+    </select>
+  </div>
+
+  <div>
+    <label>Evento</label>
+    <input id="evento" type="text" placeholder="Ex: Michael Jackson Tributo">
+  </div>
+
+  <div>
+    <label>Data</label>
+    <input id="dataEvento" type="date">
+  </div>
+</div>
+
+<h2>📋 Lista de Custos</h2>
+
+<table id="tabela">
+<thead>
+<tr>
+<th>Categoria</th>
+<th>Item</th>
+<th>Descrição</th>
+<th>Fornecedor</th>
+<th>Nº Nota Fiscal</th>
+<th>Data Compra</th>
+<th>Pagamento</th>
+<th>Estoque Atual</th>
+<th>Estoque Mínimo</th>
+<th>Qtd</th>
+<th>Valor Unitário</th>
+<th>Total</th>
+<th>Arquivo Nota</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr><td>Maquiagem</td><td>Base Líquida</td><td>Uniformizar a pele para palco</td><td><input></td><td><input></td><td><input type="date"></td><td><select><option>PIX</option><option>Dinheiro</option><option>Débito</option><option>Crédito</option><option>Boleto</option></select></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="0" step="0.01" oninput="calcular()"></td><td class="linhaTotal">R$ 0,00</td><td><input type="file" accept=".pdf,image/*"></td></tr>
+
+<tr><td>Maquiagem</td><td>Corretivo</td><td>Corrigir olheiras e manchas</td><td><input></td><td><input></td><td><input type="date"></td><td><select><option>PIX</option><option>Dinheiro</option><option>Débito</option><option>Crédito</option><option>Boleto</option></select></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="0" step="0.01" oninput="calcular()"></td><td class="linhaTotal">R$ 0,00</td><td><input type="file" accept=".pdf,image/*"></td></tr>
+
+<tr><td>Maquiagem</td><td>Pó Compacto</td><td>Selar maquiagem e tirar brilho</td><td><input></td><td><input></td><td><input type="date"></td><td><select><option>PIX</option><option>Dinheiro</option><option>Débito</option><option>Crédito</option><option>Boleto</option></select></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="0" step="0.01" oninput="calcular()"></td><td class="linhaTotal">R$ 0,00</td><td><input type="file" accept=".pdf,image/*"></td></tr>
+
+<tr><td>Maquiagem Artística</td><td>Azul</td><td>Efeito frio, personagem e luz azulada</td><td><input></td><td><input></td><td><input type="date"></td><td><select><option>PIX</option><option>Dinheiro</option><option>Débito</option><option>Crédito</option><option>Boleto</option></select></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="0" step="0.01" oninput="calcular()"></td><td class="linhaTotal">R$ 0,00</td><td><input type="file" accept=".pdf,image/*"></td></tr>
+
+<tr><td>Maquiagem Artística</td><td>Amarelo</td><td>Destaque luminoso e efeito de brilho</td><td><input></td><td><input></td><td><input type="date"></td><td><select><option>PIX</option><option>Dinheiro</option><option>Débito</option><option>Crédito</option><option>Boleto</option></select></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="0" step="0.01" oninput="calcular()"></td><td class="linhaTotal">R$ 0,00</td><td><input type="file" accept=".pdf,image/*"></td></tr>
+
+<tr><td>Maquiagem Artística</td><td>Vermelho</td><td>Expressão forte e efeito dramático</td><td><input></td><td><input></td><td><input type="date"></td><td><select><option>PIX</option><option>Dinheiro</option><option>Débito</option><option>Crédito</option><option>Boleto</option></select></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="0" step="0.01" oninput="calcular()"></td><td class="linhaTotal">R$ 0,00</td><td><input type="file" accept=".pdf,image/*"></td></tr>
+
+<tr><td>Maquiagem Artística</td><td>Preto</td><td>Contorno, sombra e acabamento artístico</td><td><input></td><td><input></td><td><input type="date"></td><td><select><option>PIX</option><option>Dinheiro</option><option>Débito</option><option>Crédito</option><option>Boleto</option></select></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="0" step="0.01" oninput="calcular()"></td><td class="linhaTotal">R$ 0,00</td><td><input type="file" accept=".pdf,image/*"></td></tr>
+
+<tr><td>Maquiagem Artística</td><td>Roxo</td><td>Efeito teatral e detalhe decorativo</td><td><input></td><td><input></td><td><input type="date"></td><td><select><option>PIX</option><option>Dinheiro</option><option>Débito</option><option>Crédito</option><option>Boleto</option></select></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="0" step="0.01" oninput="calcular()"></td><td class="linhaTotal">R$ 0,00</td><td><input type="file" accept=".pdf,image/*"></td></tr>
+
+<tr><td>Maquiagem Artística</td><td>Clown Branco</td><td>Base branca artística, contraste e iluminação facial</td><td><input></td><td><input></td><td><input type="date"></td><td><select><option>PIX</option><option>Dinheiro</option><option>Débito</option><option>Crédito</option><option>Boleto</option></select></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="0" step="0.01" oninput="calcular()"></td><td class="linhaTotal">R$ 0,00</td><td><input type="file" accept=".pdf,image/*"></td></tr>
+
+<tr><td>Cabelo</td><td>Manutenção do Cabelo</td><td>Corte, hidratação, coloração e preparação</td><td><input></td><td><input></td><td><input type="date"></td><td><select><option>PIX</option><option>Dinheiro</option><option>Débito</option><option>Crédito</option><option>Boleto</option></select></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="0" step="0.01" oninput="calcular()"></td><td class="linhaTotal">R$ 0,00</td><td><input type="file" accept=".pdf,image/*"></td></tr>
+
+<tr><td>Peruca</td><td>Peruca Nova</td><td>Aquisição de nova peruca para caracterização</td><td><input></td><td><input></td><td><input type="date"></td><td><select><option>PIX</option><option>Dinheiro</option><option>Débito</option><option>Crédito</option><option>Boleto</option></select></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="0" step="0.01" oninput="calcular()"></td><td class="linhaTotal">R$ 0,00</td><td><input type="file" accept=".pdf,image/*"></td></tr>
+
+<tr><td>Peruca</td><td>Manutenção da Peruca</td><td>Lavagem, escovação, reparo e modelagem</td><td><input></td><td><input></td><td><input type="date"></td><td><select><option>PIX</option><option>Dinheiro</option><option>Débito</option><option>Crédito</option><option>Boleto</option></select></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="0" step="0.01" oninput="calcular()"></td><td class="linhaTotal">R$ 0,00</td><td><input type="file" accept=".pdf,image/*"></td></tr>
+
+<tr><td>Acessório</td><td>Luva Branca</td><td>Acessório de palco estilo Michael Jackson</td><td><input></td><td><input></td><td><input type="date"></td><td><select><option>PIX</option><option>Dinheiro</option><option>Débito</option><option>Crédito</option><option>Boleto</option></select></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="0" step="0.01" oninput="calcular()"></td><td class="linhaTotal">R$ 0,00</td><td><input type="file" accept=".pdf,image/*"></td></tr>
+
+<tr><td>Acessório</td><td>Chapéu Fedora</td><td>Composição do figurino do artista</td><td><input></td><td><input></td><td><input type="date"></td><td><select><option>PIX</option><option>Dinheiro</option><option>Débito</option><option>Crédito</option><option>Boleto</option></select></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="1" oninput="calcular()"></td><td><input type="number" value="0" step="0.01" oninput="calcular()"></td><td class="linhaTotal">R$ 0,00</td><td><input type="file" accept=".pdf,image/*"></td></tr>
+
+</tbody>
+</table>
+
+<button class="add" onclick="adicionarLinha()">➕ Adicionar Item</button>
+<button class="save" onclick="salvarHistorico()">💾 Salvar Histórico</button>
+<button class="pdf" onclick="window.print()">📄 Salvar em PDF</button>
+<button class="clear" onclick="limparValores()">🧹 Limpar Valores</button>
+
+<div class="total">
+TOTAL GERAL: <span id="totalGeral">R$ 0,00</span>
+</div>
+
+<div class="resumo">
+<h2>📊 Resumo por Categoria</h2>
+<p><b>Maquiagem:</b> <span id="totalMaquiagem">R$ 0,00</span></p>
+<p><b>Maquiagem Artística:</b> <span id="totalArtistica">R$ 0,00</span></p>
+<p><b>Cabelo:</b> <span id="totalCabelo">R$ 0,00</span></p>
+<p><b>Peruca:</b> <span id="totalPeruca">R$ 0,00</span></p>
+<p><b>Acessório:</b> <span id="totalAcessorio">R$ 0,00</span></p>
+</div>
+
+<h2>📝 Observações</h2>
+<textarea id="observacoes" rows="5" placeholder="Anote produtos usados, itens para comprar, nota fiscal, manutenção, peruca nova e observações do show..."></textarea>
+
+<h2>🧾 Histórico Salvo</h2>
+<table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Artista</th>
+<th>Evento</th>
+<th>Tipo</th>
+<th>Total</th>
+<th>Observações</th>
+</tr>
+</thead>
+<tbody id="historico"></tbody>
+</table>
+
+</div>
+
+<script>
+function moeda(valor){
+  return valor.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+}
+
+function calcular(){
+  let totalGeral = 0;
+  let totais = {
+    "Maquiagem":0,
+    "Maquiagem Artística":0,
+    "Cabelo":0,
+    "Peruca":0,
+    "Acessório":0
+  };
+
+  document.querySelectorAll("#tabela tbody tr").forEach(linha=>{
+    let categoria = linha.cells[0].innerText || linha.cells[0].querySelector("input")?.value || "";
+    let estoqueAtual = Number(linha.cells[7].querySelector("input").value) || 0;
+    let estoqueMinimo = Number(linha.cells[8].querySelector("input").value) || 0;
+    let qtd = Number(linha.cells[9].querySelector("input").value) || 0;
+    let valor = Number(linha.cells[10].querySelector("input").value) || 0;
+    let total = qtd * valor;
+
+    linha.querySelector(".linhaTotal").innerText = moeda(total);
+    totalGeral += total;
+
+    if(totais[categoria] !== undefined){
+      totais[categoria] += total;
+    }
+
+    linha.classList.remove("estoqueBaixo");
+    if(estoqueAtual <= estoqueMinimo){
+      linha.classList.add("estoqueBaixo");
+    }
+  });
+
+  document.getElementById("totalGeral").innerText = moeda(totalGeral);
+  document.getElementById("totalMaquiagem").innerText = moeda(totais["Maquiagem"]);
+  document.getElementById("totalArtistica").innerText = moeda(totais["Maquiagem Artística"]);
+  document.getElementById("totalCabelo").innerText = moeda(totais["Cabelo"]);
+  document.getElementById("totalPeruca").innerText = moeda(totais["Peruca"]);
+  document.getElementById("totalAcessorio").innerText = moeda(totais["Acessório"]);
+}
+
+function adicionarLinha(){
+  let tbody = document.querySelector("#tabela tbody");
+  let linha = document.createElement("tr");
+
+  linha.innerHTML = `
+  <td><input type="text" placeholder="Categoria"></td>
+  <td><input type="text" placeholder="Item"></td>
+  <td><input type="text" placeholder="Descrição"></td>
+  <td><input type="text" placeholder="Fornecedor"></td>
+  <td><input type="text" placeholder="Nº NF"></td>
+  <td><input type="date"></td>
+  <td>
+    <select>
+      <option>PIX</option>
+      <option>Dinheiro</option>
+      <option>Débito</option>
+      <option>Crédito</option>
+      <option>Boleto</option>
+    </select>
+  </td>
+  <td><input type="number" value="1" oninput="calcular()"></td>
+  <td><input type="number" value="1" oninput="calcular()"></td>
+  <td><input type="number" value="1" oninput="calcular()"></td>
+  <td><input type="number" value="0" step="0.01" oninput="calcular()"></td>
+  <td class="linhaTotal">R$ 0,00</td>
+  <td><input type="file" accept=".pdf,image/*"></td>
+  `;
+
+  tbody.appendChild(linha);
+  calcular();
+}
+
+function salvarHistorico(){
+  calcular();
+
+  let artista = document.getElementById("artista").value;
+  let evento = document.getElementById("evento").value;
+  let tipo = document.getElementById("tipoShow").value;
+  let data = document.getElementById("dataEvento").value;
+  let total = document.getElementById("totalGeral").innerText;
+  let obs = document.getElementById("observacoes").value;
+
+  let registro = {data, artista, evento, tipo, total, obs};
+
+  let historico = JSON.parse(localStorage.getItem("historicoArtista")) || [];
+  historico.push(registro);
+  localStorage.setItem("historicoArtista", JSON.stringify(historico));
+
+  carregarHistorico();
+  alert("Histórico salvo com sucesso!");
+}
+
+function carregarHistorico(){
+  let historico = JSON.parse(localStorage.getItem("historicoArtista")) || [];
+  let tbody = document.getElementById("historico");
+  tbody.innerHTML = "";
+
+  historico.forEach(item=>{
+    tbody.innerHTML += `
+    <tr>
+      <td>${item.data}</td>
+      <td>${item.artista}</td>
+      <td>${item.evento}</td>
+      <td>${item.tipo}</td>
+      <td>${item.total}</td>
+      <td>${item.obs}</td>
+    </tr>`;
+  });
+}
+
+function limparValores(){
+  document.querySelectorAll("#tabela tbody tr").forEach(linha=>{
+    linha.cells[9].querySelector("input").value = 1;
+    linha.cells[10].querySelector("input").value = 0;
+  });
+  calcular();
+}
+
+calcular();
+carregarHistorico();
+</script>
+
+</body>
+</html>
