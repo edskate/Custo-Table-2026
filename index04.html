@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preparação de Pele - Artista</title>
+
+<style>
+body{
+  font-family:Arial, sans-serif;
+  background:#f2f2f2;
+  margin:0;
+  padding:15px;
+}
+.container{
+  max-width:1200px;
+  margin:auto;
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 0 10px #999;
+}
+h1,h2{text-align:center;}
+.info{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+input,textarea{
+  width:100%;
+  padding:8px;
+  border-radius:6px;
+  border:1px solid #aaa;
+  box-sizing:border-box;
+}
+.categoria{
+  background:#111;
+  color:white;
+  padding:12px;
+  border-radius:8px;
+  margin-top:25px;
+  font-weight:bold;
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+}
+th{
+  background:#222;
+  color:white;
+  padding:8px;
+}
+td{
+  border:1px solid #ccc;
+  padding:8px;
+}
+button{
+  padding:10px 15px;
+  border:0;
+  border-radius:8px;
+  margin:5px;
+  font-weight:bold;
+  cursor:pointer;
+}
+.salvar{background:#00c853;color:white;}
+.limpar{background:#d50000;color:white;}
+.pdf{background:#2962ff;color:white;}
+.resumo{
+  background:#111;
+  color:white;
+  padding:15px;
+  border-radius:10px;
+  font-size:24px;
+  text-align:center;
+  margin-top:20px;
+}
+.historico{
+  background:#fafafa;
+  padding:15px;
+  border-radius:10px;
+  border:1px solid #ccc;
+  margin-top:20px;
+}
+@media(max-width:768px){
+  .info{grid-template-columns:1fr;}
+  table,thead,tbody,tr,td,th{display:block;}
+  th{display:none;}
+  td{margin-bottom:5px;}
+}
+@media print{
+  button{display:none;}
+  body{background:white;}
+  .container{box-shadow:none;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Preparação de Pele para Artista</h1>
+<h2>Controle de Produtos, Valores, Nota Fiscal e Histórico</h2>
+
+<div class="info">
+<input id="artista" placeholder="Nome do artista">
+<input id="evento" placeholder="Evento / Show / Pocket">
+<input id="data" type="date">
+<input id="horario" type="time">
+</div>
+
+<div class="categoria">Limpeza da Pele</div>
+<table>
+<tr><th>Produto</th><th>Descrição</th><th>Qtd</th><th>Valor R$</th></tr>
+<tr><td>Sabonete Facial</td><td><input value="Remove oleosidade e impurezas"></td><td><input type="number" value="1"></td><td><input class="valor" type="number" step="0.01"></td></tr>
+<tr><td>Água Micelar</td><td><input value="Limpeza antes e depois da maquiagem"></td><td><input type="number" value="1"></td><td><input class="valor" type="number" step="0.01"></td></tr>
+<tr><td>Esfoliante Facial</td><td><input value="Remove células mortas"></td><td><input type="number" value="1"></td><td><input class="valor" type="number" step="0.01"></td></tr>
+<tr><td>Lenços Demaquilantes</td><td><input value="Limpeza rápida no camarim"></td><td><input type="number" value="1"></td><td><input class="valor" type="number" step="0.01"></td></tr>
+</table>
+
+<div class="categoria">Hidratação e Proteção</div>
+<table>
+<tr><th>Produto</th><th>Descrição</th><th>Qtd</th><th>Valor R$</th></tr>
+<tr><td>Hidratante Facial</td><td><input value="Prepara a pele para maquiagem"></td><td><input type="number" value="1"></td><td><input class="valor" type="number" step="0.01"></td></tr>
+<tr><td>Sérum Facial</td><td><input value="Ajuda na hidratação e viço da pele"></td><td><input type="number" value="1"></td><td><input class="valor" type="number" step="0.01"></td></tr>
+<tr><td>Protetor Solar FPS 50</td><td><input value="Proteção para eventos externos"></td><td><input type="number" value="1"></td><td><input class="valor" type="number" step="0.01"></td></tr>
+<tr><td>Balm Labial</td><td><input value="Proteção dos lábios"></td><td><input type="number" value="1"></td><td><input class="valor" type="number" step="0.01"></td></tr>
+</table>
+
+<div class="categoria">Preparação para Maquiagem</div>
+<table>
+<tr><th>Produto</th><th>Descrição</th><th>Qtd</th><th>Valor R$</th></tr>
+<tr><td>Primer Facial</td><td><input value="Ajuda a fixar a maquiagem"></td><td><input type="number" value="1"></td><td><input class="valor" type="number" step="0.01"></td></tr>
+<tr><td>Base Líquida</td><td><input value="Cobertura uniforme para palco"></td><td><input type="number" value="1"></td><td><input class="valor" type="number" step="0.01"></td></tr>
+<tr><td>Corretivo</td><td><input value="Correção de olheiras e manchas"></td><td><input type="number" value="1"></td><td><input class="valor" type="number" step="0.01"></td></tr>
+<tr><td>Pó Translúcido</td><td><input value="Controle de brilho no palco"></td><td><input type="number" value="1"></td><td><input class="valor" type="number" step="0.01"></td></tr>
+<tr><td>Fixador de Maquiagem</td><td><input value="Mantém a maquiagem durante o show"></td><td><input type="number" value="1"></td><td><input class="valor" type="number" step="0.01"></td></tr>
+</table>
+
+<div class="categoria">Maquiagem Artística Colorida</div>
+<table>
+<tr><th>Cor</th><th>Descrição de Uso</th><th>Qtd</th><th>Valor R$</th></tr>
+
+<tr style="background:#fff;color:#000;">
+<td><b>Branco / Clown White</b></td>
+<td>Base artística, iluminação facial, destaque de expressão e cobertura completa.</td>
+<td><input type="number" value="1"></td>
+<td><input class="valor" type="number" step="0.01"></td>
+</tr>
+
+<tr style="background:#000;color:#fff;">
+<td><b>Preto</b></td>
+<td>Contorno, profundidade, olhos, sobrancelhas e acabamento dramático.</td>
+<td><input type="number" value="1"></td>
+<td><input class="valor" type="number" step="0.01"></td>
+</tr>
+
+<tr style="background:#0066ff;color:#fff;">
+<td><b>Azul</b></td>
+<td>Sombras frias, efeito futurista, detalhes de palco e maquiagem temática.</td>
+<td><input type="number" value="1"></td>
+<td><input class="valor" type="number" step="0.01"></td>
+</tr>
+
+<tr style="background:#ff0000;color:#fff;">
+<td><b>Vermelho</b></td>
+<td>Destaque expressivo, detalhe teatral e efeito dramático.</td>
+<td><input type="number" value="1"></td>
+<td><input class="valor" type="number" step="0.01"></td>
+</tr>
+
+<tr style="background:#ffd700;color:#000;">
+<td><b>Amarelo</b></td>
+<td>Pontos de luz, brilho facial e contraste artístico.</td>
+<td><input type="number" value="1"></td>
+<td><input class="valor" type="number" step="0.01"></td>
+</tr>
+
+<tr style="background:#8000ff;color:#fff;">
+<td><b>Roxo</b></td>
+<td>Sombra profunda, efeito noturno e maquiagem de fantasia.</td>
+<td><input type="number" value="1"></td>
+<td><input class="valor" type="number" step="0.01"></td>
+</tr>
+
+<tr style="background:#c0c0c0;color:#000;">
+<td><b>Prata</b></td>
+<td>Reflexo metálico, brilho de palco e efeito futurista.</td>
+<td><input type="number" value="1"></td>
+<td><input class="valor" type="number" step="0.01"></td>
+</tr>
+
+<tr style="background:#d4af37;color:#000;">
+<td><b>Dourado</b></td>
+<td>Brilho luxuoso, glamour e acabamento premium.</td>
+<td><input type="number" value="1"></td>
+<td><input class="valor" type="number" step="0.01"></td>
+</tr>
+
+<tr style="background:#00b050;color:#fff;">
+<td><b>Verde</b></td>
+<td>Caracterização especial, maquiagem criativa e efeitos temáticos.</td>
+<td><input type="number" value="1"></td>
+<td><input class="valor" type="number" step="0.01"></td>
+</tr>
+
+<tr style="background:#ff69b4;color:#000;">
+<td><b>Rosa</b></td>
+<td>Suavização facial, destaque delicado e efeito artístico leve.</td>
+<td><input type="number" value="1"></td>
+<td><input class="valor" type="number" step="0.01"></td>
+</tr>
+
+<tr style="background:#ff8c00;color:#fff;">
+<td><b>Laranja</b></td>
+<td>Transição de sombra, contraste e efeito de calor.</td>
+<td><input type="number" value="1"></td>
+<td><input class="valor" type="number" step="0.01"></td>
+</tr>
+</table>
+
+<div class="categoria">Acessórios de Aplicação</div>
+<table>
+<tr><th>Item</th><th>Descrição</th><th>Qtd</th><th>Valor R$</th></tr>
+<tr><td>Pincéis</td><td><input value="Aplicação de base e detalhes"></td><td><input type="number" value="1"></td><td><input class="valor" type="number" step="0.01"></td></tr>
+<tr><td>Esponjas</td><td><input value="Acabamento da pele"></td><td><input type="number" value="1"></td><td><input class="valor" type="number" step="0.01"></td></tr>
+<tr><td>Algodão</td><td><input value="Limpeza e correção"></td><td><input type="number" value="1"></td><td><input class="valor" type="number" step="0.01"></td></tr>
+<tr><td>Cotonetes</td><td><input value="Correção de detalhes pequenos"></td><td><input type="number" value="1"></td><td><input class="valor" type="number" step="0.01"></td></tr>
+</table>
+
+<div class="categoria">Cuidados Pós-Show</div>
+<table>
+<tr><th>Produto</th><th>Descrição</th><th>Qtd</th><th>Valor R$</th></tr>
+<tr><td>Demaquilante</td><td><input value="Remove maquiagem pesada"></td><td><input type="number" value="1"></td><td><input class="valor" type="number" step="0.01"></td></tr>
+<tr><td>Hidratante Noturno</td><td><input value="Recuperação da pele após o show"></td><td><input type="number" value="1"></td><td><input class="valor" type="number" step="0.01"></td></tr>
+<tr><td>Máscara Facial</td><td><input value="Hidratação e descanso da pele"></td><td><input type="number" value="1"></td><td><input class="valor" type="number" step="0.01"></td></tr>
+</table>
+
+<div class="categoria">Nota Fiscal</div>
+<table>
+<tr><th>Nº Nota</th><th>Loja</th><th>Produto</th><th>Valor R$</th></tr>
+<tr>
+<td><input id="nota" placeholder="Número da nota"></td>
+<td><input id="loja" placeholder="Nome da loja"></td>
+<td><input id="produtoNota" placeholder="Produto comprado"></td>
+<td><input id="valorNota" class="valor" type="number" step="0.01"></td>
+</tr>
+</table>
+
+<div class="categoria">Observações</div>
+<textarea id="obs" rows="4" placeholder="Observações sobre alergias, reposição, pele sensível, produtos usados no show..."></textarea>
+
+<div class="resumo">
+TOTAL GERAL: R$ <span id="total">0,00</span>
+</div>
+
+<center>
+<button class="salvar" onclick="salvar()">Salvar Histórico</button>
+<button class="limpar" onclick="limpar()">Limpar Campos</button>
+<button class="pdf" onclick="window.print()">Salvar em PDF</button>
+</center>
+
+<div class="historico">
+<h2>Histórico Salvo</h2>
+<div id="historico"></div>
+</div>
+
+</div>
+
+<script>
+function calcular(){
+  let total = 0;
+  document.querySelectorAll(".valor").forEach(campo=>{
+    total += Number(campo.value) || 0;
+  });
+  document.getElementById("total").innerText = total.toFixed(2).replace(".", ",");
+}
+
+document.querySelectorAll("input, textarea").forEach(campo=>{
+  campo.addEventListener("input", calcular);
+});
+
+function salvar(){
+  calcular();
+
+  let registro = {
+    artista: document.getElementById("artista").value,
+    evento: document.getElementById("evento").value,
+    data: document.getElementById("data").value,
+    horario: document.getElementById("horario").value,
+    nota: document.getElementById("nota").value,
+    loja: document.getElementById("loja").value,
+    produtoNota: document.getElementById("produtoNota").value,
+    valorNota: document.getElementById("valorNota").value,
+    obs: document.getElementById("obs").value,
+    total: document.getElementById("total").innerText
+  };
+
+  let historico = JSON.parse(localStorage.getItem("historicoPreparacaoPele")) || [];
+  historico.push(registro);
+  localStorage.setItem("historicoPreparacaoPele", JSON.stringify(historico));
+
+  mostrarHistorico();
+  alert("Registro salvo com sucesso!");
+}
+
+function mostrarHistorico(){
+  let historico = JSON.parse(localStorage.getItem("historicoPreparacaoPele")) || [];
+  let div = document.getElementById("historico");
+  div.innerHTML = "";
+
+  historico.forEach((item, index)=>{
+    div.innerHTML += `
+      <p>
+      <strong>${index + 1} - ${item.data}</strong><br>
+      Artista: ${item.artista}<br>
+      Evento: ${item.evento}<br>
+      Horário: ${item.horario}<br>
+      Nota Fiscal: ${item.nota}<br>
+      Loja: ${item.loja}<br>
+      Produto: ${item.produtoNota}<br>
+      Observação: ${item.obs}<br>
+      <strong>Total: R$ ${item.total}</strong>
+      </p>
+      <hr>
+    `;
+  });
+}
+
+function limpar(){
+  if(confirm("Deseja limpar os campos?")){
+    document.querySelectorAll("input, textarea").forEach(campo=>{
+      campo.value = "";
+    });
+    calcular();
+  }
+}
+
+mostrarHistorico();
+calcular();
+</script>
+
+</body>
+</html>
